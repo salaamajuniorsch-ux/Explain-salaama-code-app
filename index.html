@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SALAAMA - Exact Code Explained In Details</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2E42C2">
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}body{margin:0;background:#F8F9FF;color:#222}
+.topbar{background:#2E42C2;color:#fff;padding:12px;display:flex;gap:10px;align-items:center;position:sticky;top:0;z-index:20}
+.menuBtn{background:#F2C94C;border:none;width:38px;height:38px;border-radius:10px;font-size:18px;font-weight:900;cursor:pointer}
+.wrap{max-width:740px;margin:auto;padding:14px;padding-bottom:90px}
+.screen{display:none}.screen.active{display:block}
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px #0001;border:1px solid #EEF1FF}
+.card h2{color:#2E42C2;margin:0 0 8px;font-size:18px}.card h3{color:#2E9E4F;margin:14px 0 6px;font-size:15px}
+.card p,.card li{font-size:14px;line-height:1.65}
+code{background:#EEF1FF;color:#2E42C2;padding:2px 6px;border-radius:6px;font-size:12px}
+pre{background:#111827;color:#E5E7EB;padding:12px;border-radius:12px;overflow:auto;font-size:12px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.btn{background:#2E42C2;color:#fff;border:none;padding:12px;border-radius:12px;width:100%;font-weight:bold;margin-top:8px;cursor:pointer}
+.btn-gold{background:#F2C94C;color:#222}
+.mean{background:#E8F5E9;border:1px solid #2E9E4F;border-radius:12px;padding:12px;margin:10px 0;font-size:13px;line-height:1.6}
+.func{background:#EEF1FF;border:1px solid #2E42C2;border-radius:12px;padding:12px;margin:10px 0;font-size:13px;line-height:1.6}
+.how{background:#FFF8E1;border:1px solid #F2C94C;border-radius:12px;padding:12px;margin:10px 0;font-size:13px;line-height:1.6}
+.warn{background:#FFEBEE;border:1px solid #E53935;border-radius:12px;padding:12px;margin:10px 0;font-size:13px;line-height:1.6}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none}#overlay.open{display:block}
+#drawer{position:fixed;left:0;top:0;bottom:0;width:86%;max-width:340px;background:#fff;z-index:201;transform:translateX(-100%);transition:transform .28s ease;overflow-y:auto;box-shadow:10px 0 30px rgba(0,0,0,.25);border-radius:0 16px 16px 0}#drawer.open{transform:translateX(0)}
+.drawerHead{background:linear-gradient(135deg,#2E42C2,#2A39A8);color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center}
+.closeBtn{background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-weight:900;cursor:pointer}
+.drawerLabel{font-size:11px;font-weight:800;letter-spacing:1px;color:#888;padding:14px 14px 4px}
+.drawerItem{display:block;padding:11px 14px;border-bottom:1px solid #eee;cursor:pointer;font-size:13px;font-weight:700;color:#222}
+.drawerItem small{display:block;font-weight:400;color:#777;font-size:11px}
+</style>
+</head>
+<body>
+<div id="overlay" onclick="closeDrawer()"></div>
+<div id="drawer">
+<div class="drawerHead"><b>🏫 SALAAMA EXACT CODE</b><button class="closeBtn" onclick="closeDrawer()">X</button></div>
+<div class="drawerLabel">START</div>
+<div class="drawerItem" onclick="showPage('p-home')">🏠 Home - Map Of Salaama</div>
+<div class="drawerLabel">A. HTML OF SALAAMA - EXACT</div>
+<div class="drawerItem" onclick="showPage('p-h-head')">A1. Head - Exact Code<small>Title, manifest, Firebase scripts</small></div>
+<div class="drawerItem" onclick="showPage('p-h-splash')">A2. Splash - Exact Code<small>Logo, ring, bar, 4600</small></div>
+<div class="drawerItem" onclick="showPage('p-h-drawer')">A3. Drawer - Exact Code<small>Head, items, devCard, logout</small></div>
+<div class="drawerItem" onclick="showPage('p-h-flyer')">A4. Dev Flyer - Exact Code<small>8 businesses</small></div>
+<div class="drawerItem" onclick="showPage('p-h-login')">A5. Login Screen - Exact Code<small>f-name, f-email, f-pass, fbStatus</small></div>
+<div class="drawerItem" onclick="showPage('p-h-role')">A6. Role + Dash + Detail + Wait<small>All screens exact</small></div>
+<div class="drawerItem" onclick="showPage('p-h-ai')">A7. AI Button - Exact Code<small>aiBtn, aiBox, chatBox</small></div>
+<div class="drawerLabel">B. CSS OF SALAAMA - EXACT</div>
+<div class="drawerItem" onclick="showPage('p-c-root')">B1. Root + Screen + Card<small>Colors, layout</small></div>
+<div class="drawerItem" onclick="showPage('p-c-tile')">B2. Topbar + Tile + Stat + Btn<small>Dashboard look</small></div>
+<div class="drawerItem" onclick="showPage('p-c-anim')">B3. Drawer + Splash Animation<small>Slide, float, spin</small></div>
+<div class="drawerLabel">C. JAVA OF SALAAMA - EXACT</div>
+<div class="drawerItem" onclick="showPage('p-j-config')">C1. Config + Variables - Exact<small>firebaseConfig, DEV_EMAIL</small></div>
+<div class="drawerItem" onclick="showPage('p-j-helpers')">C2. Helpers - Exact<small>show(), togglePass(), setMsg</small></div>
+<div class="drawerItem" onclick="showPage('p-j-lock')">C3. Phone Lock - Exact<small>WebAuthn, localStorage</small></div>
+<div class="drawerItem" onclick="showPage('p-j-user')">C4. ensureCollections + ensureUserDoc - Exact<small>_init, DEV_ROLES</small></div>
+<div class="drawerItem" onclick="showPage('p-j-auth')">C5. handleAfterAuth + Login/Signup - Exact<small>Who goes where</small></div>
+<div class="drawerItem" onclick="showPage('p-j-roles')">C6. ROLES + getDash() - Exact<small>10 roles, tiles per role</small></div>
+<div class="drawerItem" onclick="showPage('p-j-toggle')">C7. renderRoleList + toggleRoleCard - Exact<small>Green / Orange</small></div>
+<div class="drawerItem" onclick="showPage('p-j-dash')">C8. loadDashboard() - Exact<small>Students, Collected, Present</small></div>
+<div class="drawerItem" onclick="showPage('p-j-live')">C9. loadLiveStudents() - Exact<small>Who sees fees</small></div>
+<div class="drawerItem" onclick="showPage('p-j-secret')">C10. Secret Tap + Drawer - Exact<small>Tap 5 times</small></div>
+<div class="drawerItem" onclick="showPage('p-j-open')">C11. openScreen() - Exact<small>One function, all tiles</small></div>
+<div class="drawerItem" onclick="showPage('p-j-save')">C12. Save - Exact<small>saveStudent, saveFee, saveAttendance, saveResult</small></div>
+<div class="drawerItem" onclick="showPage('p-j-list')">C13. List + Approval - Exact<small>listStudents, approveUser</small></div>
+<div class="drawerItem" onclick="showPage('p-j-ai')">C14. Salaama AI + Install - Exact<small>askAI(), installApp()</small></div>
+</div>
+
+<div class="topbar"><button class="menuBtn" onclick="openDrawer()">☰</button><div><b>🏫 SALAAMA EXACT CODE - IN DETAILS</b><br><span style="font-size:11px;color:#F2C94C">Tap ☰ for every part</span></div></div>
+<div class="wrap">
+
+<div id="p-home" class="screen active"><div class="card"><h2>Home - Map Of Salaama Exact Code</h2><p>Salaama is <b>ONE file</b> with 3 parts. Flow:</p><p><b>Splash 4.6s → Unlock / Login → Role List → Dashboard → Tap Tile → Detail → Back</b></p><div class="mean"><b>MEANING:</b> HTML = bones, CSS = clothes, JAVA = brain. Without HTML nothing shows, without CSS ugly, without JAVA buttons do nothing.</div><div class="func"><b>FUNCTION:</b> This APK explains each exact line you wrote in Salaama, not a different app.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Keep HTML top, CSS in &lt;style&gt;, JAVA in &lt;script&gt; at bottom. Never mix.</div><button class="btn" onclick="showPage('p-h-head')">Start A1 Head →</button></div></div>
+
+<div id="p-h-head" class="screen"><div class="card"><h2>A1. Head - Exact Code Of Salaama</h2><pre>&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;title&gt;SALAAMA MUSLIM JUNIOR SCHOOL&lt;/title&gt;
+&lt;link rel="icon" href="logo.png"&gt;
+&lt;link rel="manifest" href="manifest.json"&gt;
+&lt;meta name="theme-color" content="#2E42C2"&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"&gt;&lt;/script&gt;</pre><div class="mean"><b>MEANING:</b> charset = letters, viewport = phone size, title = tab name, icon = logo, manifest = installable, theme-color = blue bar.</div><div class="func"><b>FUNCTION:</b> 3 Firebase scripts: app = connect, auth = login, firestore = database. All version 10.12.2 compat.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Put all 3 before your script, same version. If one missing, login will fail.</div><div class="warn"><b>IF WRONG:</b> No viewport = app looks tiny on phone. No manifest = cannot install. Wrong Firebase version = auth error.</div><button class="btn" onclick="showPage('p-h-splash')">Next A2 Splash →</button></div></div>
+
+<div id="p-h-splash" class="screen"><div class="card"><h2>A2. Splash - Exact Code Of Salaama</h2><pre>&lt;div id="splash"&gt;
+  &lt;div class="splash-ring"&gt;&lt;/div&gt;
+  &lt;img class="splash-logo" src="logo.png"&gt;
+  &lt;div class="splash-title"&gt;SALAAMA MUSLIM&lt;/div&gt;
+  &lt;div class="splash-sub"&gt;JUNIOR SCHOOL&lt;/div&gt;
+  &lt;div class="splash-motto"&gt;DESTINED TO SUCCEED&lt;/div&gt;
+  &lt;div class="splash-bar"&gt;&lt;div class="splash-fill"&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="splash-loading"&gt;Loading...&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;setTimeout(function(){var s=document.getElementById('splash');if(s)s.style.display='none';},4600);&lt;/script&gt;</pre><div class="mean"><b>MEANING:</b> First screen, covers whole phone, blue gradient.</div><div class="func"><b>FUNCTION:</b> Shows school name while app loads. Ring spins, logo floats, gold bar moves. After 4600ms (4.6 sec) hides.</div><div class="how"><b>HOW IT MUST BE DONE:</b> position:fixed, inset:0, z-index:999 on top. Must have setTimeout, plus second timer at bottom of script.</div><div class="warn"><b>IF WRONG:</b> If you forget setTimeout, splash stays forever and user never enters app.</div><button class="btn" onclick="showPage('p-h-drawer')">Next A3 Drawer →</button></div></div>
+
+<div id="p-h-drawer" class="screen"><div class="card"><h2>A3. Drawer - Exact Code Of Salaama</h2><pre>&lt;div id="drawerOverlay" onclick="closeDrawer()"&gt;&lt;/div&gt;
+&lt;div id="drawer"&gt;
+ &lt;div class="drawerHead" onclick="secretTap()"&gt;
+  &lt;img src="logo.png"&gt;&lt;div&gt;&lt;b id="drawerName"&gt;User&lt;/b&gt;&lt;br&gt;&lt;span id="drawerRole"&gt;Role&lt;/span&gt;
+ &lt;/div&gt;&lt;button onclick="closeDrawer()"&gt;X&lt;/button&gt;&lt;/div&gt;
+ &lt;div class="drawerLabel"&gt;CURRENT DASHBOARD - &lt;span id="drawerRole2"&gt;Admin&lt;/span&gt;&lt;/div&gt;
+ &lt;div id="drawerItems"&gt;&lt;/div&gt;
+ &lt;div class="drawerLabel"&gt;ROLES&lt;/div&gt;
+ &lt;div class="drawerItem" onclick="closeDrawer();goRoles()"&gt;Back to Roles List&lt;/div&gt;
+ &lt;div class="drawerLabel"&gt;APP DEVELOPER&lt;/div&gt;
+ &lt;div class="devCard" id="devCardHidden" style="display:none" onclick="closeDrawer();openDevFlyer()"&gt;Jemba AbdulHamiid&lt;/div&gt;
+ &lt;div class="drawerItem" onclick="closeDrawer();logout()"&gt;Logout&lt;/div&gt;
+&lt;/div&gt;</pre><div class="mean"><b>MEANING:</b> Sliding menu from left.</div><div class="func"><b>FUNCTION:</b> drawerHead shows name + role, tap 5 times = secret. drawerItems = tiles of current role, filled by getDash(). devCard hidden, logout signs out. Overlay darkens background, tap outside closes.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Hidden translateX(-100%), openDrawer adds open. drawerItems MUST come from getDash() so drawer matches dashboard.</div><div class="warn"><b>IF WRONG:</b> If drawerItems hard-coded, Admin and Other will see same menu - wrong.</div><button class="btn" onclick="showPage('p-h-flyer')">Next A4 Flyer →</button></div></div>
+
+<div id="p-h-flyer" class="screen"><div class="card"><h2>A4. Dev Flyer - Exact Code Of Salaama</h2><pre>&lt;div id="devFlyer"&gt;
+ &lt;div class="flyerTop"&gt;DO YOU NEED AN APP FOR YOUR BUSINESS?&lt;/div&gt;
+ &lt;div class="bizGrid"&gt; SACCO, School, Pharmacy, Mosque, Clinic, Real Estate, Restaurant, Shop &lt;/div&gt;
+ &lt;div class="flyerContact"&gt; Jemba AbdulHamiid - WhatsApp 0709157254 - Call 0785831666 - ustadhnze@gmail.com &lt;/div&gt;
+&lt;/div&gt;</pre><div class="mean"><b>MEANING:</b> Full screen advert.</div><div class="func"><b>FUNCTION:</b> Shows 8 businesses, each with small desc. Contact buttons: Chat on WhatsApp (wa.me/256709157254), Call Now (tel:+256785831666).</div><div class="how"><b>HOW IT MUST BE DONE:</b> display:none, openDevFlyer adds open, z-index 300 above drawer, must have Back button calling closeDevFlyer().</div><button class="btn" onclick="showPage('p-h-login')">Next A5 Login →</button></div></div>
+
+<div id="p-h-login" class="screen"><div class="card"><h2>A5. Login Screen - Exact Code Of Salaama</h2><pre>&lt;div id="scr-unlock" class="screen"&gt; Welcome Back + Unlock with Phone Lock + Use Password Instead + Turn OFF Phone Lock &lt;/div&gt;
+&lt;div id="scr-login" class="screen"&gt;
+ &lt;div id="fbStatus"&gt;Connect&lt;/div&gt;
+ &lt;input id="f-name" placeholder="Full Name"&gt;
+ &lt;input id="f-email" placeholder="Email"&gt;
+ &lt;div class="passWrap"&gt;&lt;input type="password" id="f-pass"&gt;&lt;button id="eyeBtn" onclick="togglePass()"&gt;SHOW&lt;/button&gt;&lt;/div&gt;
+ &lt;label&gt;&lt;input type="checkbox" id="f-remember" checked&gt; Keep me signed in + Enable Phone Lock&lt;/label&gt;
+ &lt;button id="loginBtn" onclick="firebaseLogin()"&gt;Login&lt;/button&gt;
+ &lt;button id="signupBtn" onclick="firebaseSignup()"&gt;Create Account&lt;/button&gt;
+ &lt;button onclick="forgotPassword()"&gt;Forgot Password?&lt;/button&gt;
+ &lt;button onclick="location.reload()"&gt;Retry Connection&lt;/button&gt;
+ &lt;button id="installBtn" onclick="installApp()"&gt;Install App&lt;/button&gt;
+ &lt;p id="loginMsg"&gt;&lt;/p&gt;
+&lt;/div&gt;</pre><div class="mean"><b>MEANING:</b> Door to enter. Unlock = fingerprint, Login = password.</div><div class="func"><b>FUNCTION:</b> fbStatus pill: Connect / Connected. f-name, f-email, f-pass collected. loginMsg shows errors. Remember checkbox enables phone lock.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Email trim + lowercase, password 6+. Every input must have unique id used in JAVA. Never change id without changing JAVA.</div><div class="warn"><b>IF WRONG:</b> If id is f-email in HTML but f-Email in JAVA, login will fail - getElementById returns null.</div><button class="btn" onclick="showPage('p-h-role')">Next A6 Screens →</button></div></div>
+
+<div id="p-h-role" class="screen"><div class="card"><h2>A6. Role + Dash + Detail + Wait - Exact Code</h2><pre>&lt;div id="scr-role" class="screen"&gt; Welcome &lt;span id="roleUserName"&gt; + &lt;div id="roleList"&gt; + Continue + Save My Roles &lt;/div&gt;
+&lt;div id="scr-dash" class="screen"&gt; Topbar hamburger + &lt;span id="curRoleName"&gt; + &lt;div id="dashStats"&gt; + &lt;div id="dashGrid"&gt; + Live Data &lt;p id="liveData"&gt; + Refresh &lt;/div&gt;
+&lt;div id="scr-detail" class="screen"&gt; Topbar Back + &lt;b id="detailTitle"&gt; + &lt;div id="detailBody"&gt; &lt;/div&gt;
+&lt;div id="scr-wait" class="screen"&gt; Waiting for Approval + &lt;p id="waitRoles"&gt; + &lt;div id="waitRoleList"&gt; + Check Approval &lt;/div&gt;</pre><div class="mean"><b>MEANING:</b> Each screen = one page. Only one active.</div><div class="func"><b>FUNCTION:</b> Role = choose job, Dash = stats + tiles + live, Detail = opened tile filled by openScreen(), Wait = waiting Admin.</div><div class="how"><b>HOW IT MUST BE DONE:</b> All class="screen", only one class active. Use show(id) to change. dashStats and dashGrid must be rebuilt on switchRole().</div><button class="btn" onclick="showPage('p-h-ai')">Next A7 AI →</button></div></div>
+
+<div id="p-h-ai" class="screen"><div class="card"><h2>A7. AI Button - Exact Code Of Salaama</h2><pre>&lt;button id="aiBtn" onclick="toggleAI()"&gt;&lt;b&gt;✦ AI&lt;/b&gt;&lt;span&gt;SALAAMA&lt;/span&gt;&lt;/button&gt;
+&lt;div id="aiBox" class="hidden"&gt;
+ &lt;div class="topbar"&gt;✦ Salaama AI - Real Data&lt;/div&gt;
+ &lt;div class="chat" id="chatBox"&gt;&lt;div class="msg"&gt;Assalamu Alaikum! Ask me...&lt;/div&gt;&lt;/div&gt;
+ &lt;input id="aiInput" placeholder="Ask Salaama AI..."&gt;&lt;button onclick="askAI()"&gt;Send&lt;/button&gt;
+&lt;/div&gt;</pre><div class="mean"><b>MEANING:</b> Floating chat.</div><div class="func"><b>FUNCTION:</b> Tap opens box, ask question, askAI() answers from real Firestore.</div><div class="how"><b>HOW IT MUST BE DONE:</b> aiBtn fixed bottom-right z-index 100, aiBox fixed above it z-index 101, hidden class toggled by toggleAI().</div><button class="btn" onclick="showPage('p-c-root')">Next B1 CSS →</button></div></div>
+
+<div id="p-c-root" class="screen"><div class="card"><h2>B1. CSS Root + Screen + Card - Exact</h2><pre>:root{--blue:#2E42C2;--gold:#F2C94C;--green:#2E9E4F;--bg:#F8F9FF}
+*{box-sizing:border-box;font-family:Arial,sans-serif}body{margin:0;background:var(--bg);color:#222}
+.screen{display:none;min-height:100vh}.screen.active{display:block}
+.wrap{max-width:540px;margin:auto;padding:12px;padding-bottom:90px}
+.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 10px #0001;border:1px solid #EEF1FF}
+.card h3{color:var(--blue);margin:0 0 6px;font-size:15px}</pre><div class="mean"><b>MEANING:</b> :root = variables, * = all elements, body = page, .screen = page hidden, .wrap = phone width, .card = white box.</div><div class="func"><b>FUNCTION:</b> Blue = topbar, Gold = important, Green = success, Bg = light. Wrap 540px makes it look like phone app, not website.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Define colors once in :root, use var(--blue) everywhere. Change color only in :root.</div><button class="btn" onclick="showPage('p-c-tile')">Next B2 Tiles →</button></div></div>
+
+<div id="p-c-tile" class="screen"><div class="card"><h2>B2. Topbar + Tile + Stat + Button - Exact</h2><pre>.topbar{background:var(--blue);color:#fff;padding:10px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:20}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:#fff;border-radius:14px;padding:16px 6px;text-align:center;cursor:pointer;box-shadow:0 2px 10px #0001;border:2px solid transparent}
+.tile:active{border-color:var(--gold);transform:scale(.97)}
+.btn{background:var(--blue);color:#fff;border:none;padding:12px;border-radius:12px;width:100%;font-weight:bold;margin-top:8px;cursor:pointer}
+.statGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.stat{border-radius:12px;padding:10px;text-align:center;color:#fff;background:var(--blue)}
+.stat:nth-child(2){background:var(--green)}.stat:nth-child(3){background:var(--gold);color:#222}
+.roleCard.approved{border-color:var(--green);background:#E8F5E9}
+.roleCard.pending{border-color:#FF9800;background:#FFF3E0}</pre><div class="mean"><b>MEANING:</b> Topbar sticky, Grid 2 columns, Tile = dashboard box, Stat = number box, Btn = action, RoleCard = role box.</div><div class="func"><b>FUNCTION:</b> Grid 1fr 1fr = 2 tiles per row. StatGrid 3 = Students / Collected / Present. Tile:active = gold border + shrink when touched. Approved green, Pending orange.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Topbar must be sticky top 0. Tile must have cursor:pointer. Stat 2nd green, 3rd gold - do not swap.</div><button class="btn" onclick="showPage('p-c-anim')">Next B3 Animation →</button></div></div>
+
+<div id="p-c-anim" class="screen"><div class="card"><h2>B3. Drawer + Splash Animation - Exact</h2><pre>#drawer{transform:translateX(-100%);transition:transform .28s ease}
+#drawer.open{transform:translateX(0)}
+#splash img.splash-logo{animation:splashFloat 2.2s ease-in-out infinite}
+.splash-ring{animation:splashSpin 2.5s linear infinite}
+.splash-fill{animation:splashLoad 1.2s ease-in-out infinite alternate}
+@keyframes splashFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.03)}}
+@keyframes splashSpin{to{transform:rotate(360deg)}}
+@keyframes splashLoad{from{margin-left:0}to{margin-left:60%}}
+@keyframes splashFade{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}</pre><div class="mean"><b>MEANING:</b> Animation = movement without JAVA.</div><div class="func"><b>FUNCTION:</b> Drawer slides .28s. Logo floats up 8px. Ring spins 360deg. Gold bar moves 0 to 60%. Splash fades in from .92.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Use transition for drawer, @keyframes name must match animation name exactly.</div><button class="btn" onclick="showPage('p-j-config')">Next C1 Config →</button></div></div>
+
+<div id="p-j-config" class="screen"><div class="card"><h2>C1. Config + Variables - Exact Code</h2><pre>const firebaseConfig={apiKey:"AIzaSyAfWFv0ttajIf_gJ4N9kgYU_dvn0UqcsG0",authDomain:"salaama-school.firebaseapp.com",projectId:"salaama-school",storageBucket:"salaama-school.firebasestorage.app",messagingSenderId:"624538718062",appId:"1:624538718062:web:fb5ef3f413b02d74c33b7f"};
+const DEV_EMAIL="ustadhnze@gmail.com",DEV_NAME="Jemba AbdulHamiid";
+const ALL_ROLES=['admin','headteacher','bursar','tahfiizu','dos_sec','dos_theo','teacher_sec','teacher_theo','other','parent'];
+const SCHOOL_ADMIN_ROLES=['admin','headteacher','bursar','parent'];
+const DEV_ROLES=['admin','headteacher','bursar','tahfiizu','dos_sec','dos_theo','teacher_sec','teacher_theo','other','parent'];
+const COLLECTIONS=['users','students','staff','fees','attendance','results','notices','tahfiizu','classes'];
+let auth=null,db=null,firebaseReady=false,currentUid=null,cur='admin',userName='User',selected=[],approvedRoles=[],authHandled=false,isDeveloper=false;</pre><div class="mean"><b>MEANING:</b> Config = address of database. Variables = memory boxes.</div><div class="func"><b>FUNCTION:</b> Connects to project salaama-school. DEV_EMAIL identifies developer. cur = current role, selected = tapped, approvedRoles = approved, isDeveloper = true if email is DEV_EMAIL.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Copy config exactly from Firebase console. Never change DEV_EMAIL spelling. cur default admin.</div><div class="warn"><b>IF WRONG:</b> Wrong apiKey = Not Connected. Wrong DEV_EMAIL = developer becomes normal user.</div><button class="btn" onclick="showPage('p-j-helpers')">Next C2 Helpers →</button></div></div>
+
+<div id="p-j-helpers" class="screen"><div class="card"><h2>C2. Helpers - Exact Code</h2><pre>function isDevEmail(e){return (e||'').toLowerCase().trim()===DEV_EMAIL}
+function setMsg(t,c){let m=document.getElementById('loginMsg');if(!m)return;m.style.color=c||'#E53935';m.innerText=t}
+function setBusy(b,id,l){let x=document.getElementById(id);if(x){x.disabled=b;x.innerText=b?'Please wait...':l}}
+function togglePass(){let p=document.getElementById('f-pass'),b=document.getElementById('eyeBtn');if(p.type==='password'){p.type='text';b.innerText='HIDE'}else{p.type='password';b.innerText='SHOW'}p.focus()}
+function show(id){closeDrawer();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}</pre><div class="mean"><b>MEANING:</b> Small helpers = reused work.</div><div class="func"><b>FUNCTION:</b> isDevEmail checks developer, setMsg shows error, setBusy disables button, togglePass SHOW/HIDE, show hides all screens shows one.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Always use show() to change screen, never style.display in many places. Always trim + lowercase email.</div><button class="btn" onclick="showPage('p-j-lock')">Next C3 Lock →</button></div></div>
+
+<div id="p-j-lock" class="screen"><div class="card"><h2>C3. Phone Lock - Exact Code</h2><pre>function phoneLockEnabled(){try{return localStorage.getItem('salaama_phone_lock')==='1'&&!!localStorage.getItem('salaama_saved_email')}catch(e){return false}}
+function enablePhoneLock(email,name){localStorage.setItem('salaama_phone_lock','1');localStorage.setItem('salaama_saved_email',email||'');localStorage.setItem('salaama_saved_name',name||'')}
+async function setupPhoneLock(email){if(!window.PublicKeyCredential||!window.isSecureContext)return false;let cred=await navigator.credentials.create({publicKey:{challenge, rp:{name:'Salaama School'}, user:{id, name:email}, pubKeyCredParams, authenticatorSelection:{userVerification:'required'}}});localStorage.setItem('salaama_webauthn_id',bufToB64(cred.rawId))}
+async function unlockWithPhoneLock(){await navigator.credentials.get({publicKey:{challenge, allowCredentials:[{id:b64ToBuf(webId)}], userVerification:'required'}});if(auth&&auth.currentUser){await handleAfterAuth(auth.currentUser.email);return}show('scr-login')}</pre><div class="mean"><b>MEANING:</b> Fingerprint / Face / PIN.</div><div class="func"><b>FUNCTION:</b> setup creates credential, unlock asks fingerprint, if auth.currentUser exists goes to dashboard, else asks password.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Must check PublicKeyCredential + isSecureContext (https). Must save webauthn_id. If fails, fall back to password.</div><button class="btn" onclick="showPage('p-j-user')">Next C4 Users →</button></div></div>
+
+<div id="p-j-user" class="screen"><div class="card"><h2>C4. ensureCollections + ensureUserDoc - Exact</h2><pre>async function ensureCollections(){if(!db)return;for(let c of COLLECTIONS){let s=await db.collection(c).limit(1).get();if(s.empty){await db.collection(c).doc('_init').set({_init:true,createdAt:new Date()});}}}
+async function ensureUserDoc(uid,email,name){
+ let ref=db.collection('users').doc(uid);let doc=await ref.get();
+ if(!doc.exists){
+  let hasAdmin=false;let s=await db.collection('users').where('approved','==',true).get();s.forEach(d=>{if(d.data().approvedRoles&&d.data().approvedRoles.includes('admin'))hasAdmin=true});
+  let roles=isDev?DEV_ROLES:[];
+  let d={name:isDev?DEV_NAME:(name||email.split('@')[0]),email,roles,approvedRoles:roles,approved:isDev?true:false,isDeveloper:isDev,isSchoolAdmin:false,status:isDev?'approved':'pending',createdAt:new Date()};
+  await ref.set(d);return d;
+ }
+ if(isDev&&d.isDeveloper!==true){await ref.update({isDeveloper:true,approved:true,status:'approved',roles:ALL_ROLES,approvedRoles:ALL_ROLES})}
+ return d;
+}</pre><div class="mean"><b>MEANING:</b> Auto create tables + user file.</div><div class="func"><b>FUNCTION:</b> ensureCollections makes 9 collections exist. ensureUserDoc creates user doc first time. Developer all roles approved, normal pending.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Call ensureCollections after login. Always skip _init when counting.</div><button class="btn" onclick="showPage('p-j-auth')">Next C5 Auth →</button></div></div>
+
+<div id="p-j-auth" class="screen"><div class="card"><h2>C5. handleAfterAuth + Login/Signup - Exact</h2><pre>async function handleAfterAuth(email){
+ if(!auth.currentUser)return;currentUid=auth.currentUser.uid;await ensureCollections();
+ localStorage.setItem('salaama_email',email);localStorage.setItem('salaama_uid',currentUid);
+ let d=await ensureUserDoc(currentUid,email,nameInput);userName=d.name||email;isDeveloper=(d.isDeveloper===true||isDevEmail(email));
+ if(document.getElementById('f-remember').checked){enablePhoneLock(email,userName);setupPhoneLock(email)}
+ if(isDeveloper){approvedRoles=DEV_ROLES;selected=[...approvedRoles];renderRoleList();show('scr-role');return;}
+ if(d.approved!==true){selected=d.roles||[];approvedRoles=[];show('scr-wait');renderRoleList();return;}
+ approvedRoles=d.approvedRoles||d.roles||[];selected=[...approvedRoles];renderRoleList();show('scr-role');
+}
+async function firebaseSignup(){if(!name){setMsg('Enter Full Name first');return}if(!email||!pass){setMsg('Enter Email and Password');return}if(pass.length&lt;6){setMsg('Password must be 6+');return}await auth.createUserWithEmailAndPassword(email,pass);await handleAfterAuth(email)}
+async function firebaseLogin(){await auth.signInWithEmailAndPassword(email,pass);await handleAfterAuth(email)}
+async function forgotPassword(){await auth.sendPasswordResetEmail(email);setMsg('Reset link sent','green')}</pre><div class="mean"><b>MEANING:</b> Boss after login.</div><div class="func"><b>FUNCTION:</b> Decides Developer -> Role List, Not approved -> Wait, Approved -> Role List. Signup creates, Login signs in, Forgot sends reset.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Never go direct to Dashboard after login. Always via handleAfterAuth -> Role List. Always check approved first.</div><button class="btn" onclick="showPage('p-j-roles')">Next C6 ROLES →</button></div></div>
+
+<div id="p-j-roles" class="screen"><div class="card"><h2>C6. ROLES + getDash() - Exact</h2><pre>const ROLES=[
+{id:'admin',name:'Admin',icon:'👑',desc:'Manages whole system.',func:'Approve users • Staff • Students • Finance'},
+{id:'headteacher',name:'Headteacher',icon:'🎓',desc:'Manages academics.',func:'Teachers • Classes • Exams • Attendance'},
+{id:'bursar',name:'Bursar',icon:'💰',desc:'Manages money.',func:'Collect Fees • Receipts • Reports'},
+{id:'tahfiizu',name:'Tahfiizu Sheikh',icon:'📖',desc:'Quran memorization.',func:'Students • Attendance • Hifzu'},
+{id:'dos_sec',name:'D.O.S Secular',icon:'📚',desc:'Secular academics.',func:'Attendance • Performance • Exams'},
+{id:'dos_theo',name:'D.O.S Theology',icon:'🕌',desc:'Theology academics.',func:'Attendance • Performance • Exams'},
+{id:'teacher_sec',name:'Secular Teacher',icon:'✏️',desc:'Teaches secular.',func:'My Classes • Exams • Marks'},
+{id:'teacher_theo',name:'Theology Teacher',icon:'📿',desc:'Teaches Quran, Arabic, Islamic Studies.',func:'My Classes • Exams • Marks'},
+{id:'other',name:'Other Workers',icon:'🍲',desc:'Non-teaching staff.',func:'My Attendance'},
+{id:'parent',name:'Parent',icon:'👨‍👩‍👧',desc:'Views ONLY own child.',func:'Child • Fees • Attendance • Results'}
+];
+function getDash(){
+if(cur==='admin')return [['👥','Staff Management','Approve users, salary'],['🧒','Students Management','Register, fees'],['🏫','Classes','All classes'],['✅','Attendance','Students + Teachers'],['📄','Documents','Receipts, reports'],['📖','Tahfiizu','Hifzu, Darsu Sitta'],['💰','Finance','Income, balance, expense'],['🎬','Media','Videos & Audios'],['⚙️','Settings','Term, fees']];
+if(cur==='bursar')return [['💰','Collect Fees','Collect & record'],['🧾','Generate Receipt','Receipt'],['🧒','Students & Fee Status','Who paid / balance'],['📊','Reports','Daily / Monthly'],['📈','Cashflow','Income / Expense'],['📄','Documents','Saved receipts']];
+if(cur==='other')return [['✅','My Attendance','Mark my own only'],['💬','Chat Headteacher','Chat']];
+if(cur==='parent')return [['🧒','My Child Profile','Only my children'],['💰','Fees Status','Only my children'],['✅','Attendance','Only my children'],['📊','Results','Only my children'],['🗓️','Timetable','Only my children'],['💬','Chat / Notices','From Admin'],['📖','Tahfiizu Progress','If Tahfiizu']];
+}</pre><div class="mean"><b>MEANING:</b> ROLES = list of jobs. getDash = tiles for current role.</div><div class="func"><b>FUNCTION:</b> Each role sees different tiles. Admin 9, Bursar 6, Other 2, Parent 7. Each tile = [icon, title, desc].</div><div class="how"><b>HOW IT MUST BE DONE:</b> Both drawer and dashboard use same getDash(). Never hard-code tiles in two places.</div><button class="btn" onclick="showPage('p-j-toggle')">Next C7 Toggle →</button></div></div>
+
+<div id="p-j-toggle" class="screen"><div class="card"><h2>C7. renderRoleList + toggleRoleCard - Exact</h2><pre>function renderRoleList(){
+document.getElementById('roleList').innerHTML=ROLES.map(r=>{
+let isSel=selected.includes(r.id);let isApp=approvedRoles.includes(r.id);let cls=isApp?'approved':(isSel?'pending':'');
+let badge=isApp?'&lt;span class="badge-green"&gt;APPROVED - Tap to Enter&lt;/span&gt;':(isSel?'&lt;span class="badge-orange"&gt;PENDING - Waiting Admin&lt;/span&gt;':'&lt;span class="badge-grey"&gt;Tap to Select&lt;/span&gt;');
+return `&lt;div class="roleCard ${cls}" onclick="toggleRoleCard('${r.id}')"&gt;...${badge}&lt;/div&gt;`;
+}).join('');
+}
+function toggleRoleCard(id){
+if(approvedRoles.includes(id)){cur=id;switchRole(id);show('scr-dash');loadDashboard();return}
+if(selected.includes(id)){selected=selected.filter(x=>x!==id);renderRoleList();return}
+let maxRoles=isDeveloper?10:(id==='admin'||selected.includes('admin')?4:3);
+if(selected.length>=maxRoles){alert('You can select max 3 roles. Admin can select 4.');return}
+selected.push(id);renderRoleList();
+}
+async function switchRole(r){if(approvedRoles.length>0&&!approvedRoles.includes(r)){alert('Not approved yet.');return}cur=r;let R=ROLES.find(x=>x.id==r);document.getElementById('curRoleName').innerText=R.name;let items=getDash();document.getElementById('dashGrid').innerHTML=items.map(i=>`&lt;div class="tile" onclick="openScreen('${i[1]}')"&gt;...&lt;/div&gt;`).join('');}</pre><div class="mean"><b>MEANING:</b> Shows green approved, orange pending, grey select.</div><div class="func"><b>FUNCTION:</b> Green tap ENTERS dashboard. Grey tap only selects for approval. Max Normal 3, Admin 4, Developer 10.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Only Role List can call switchRole(). Never jump roles from dashboard.</div><button class="btn" onclick="showPage('p-j-dash')">Next C8 Dashboard →</button></div></div>
+
+<div id="p-j-dash" class="screen"><div class="card"><h2>C8. loadDashboard() - Exact Code</h2><pre>async function loadDashboard(){
+let sSnap=await db.collection('students').get();
+let fSnap=await db.collection('fees').get();
+let realStudents=0;sSnap.forEach(d=>{ if(!d.data()._init) realStudents++; });
+let collected=0;fSnap.forEach(d=>{ if(!d.data()._init) collected+=Number(d.data().amount||0); });
+let aSnap=await db.collection('attendance').where('date','==',new Date().toDateString()).get();
+let realPresent=0;aSnap.forEach(d=>{ if(!d.data()._init) realPresent++; });
+let isFinance = ['admin','bursar'].includes(cur);
+let isTeacherLike = ['teacher_sec','teacher_theo','tahfiizu','other'].includes(cur);
+let liveCard=null;document.querySelectorAll('#scr-dash .card').forEach(c=>{if(c.querySelector('h3')&&c.querySelector('h3').innerText.includes('Live Data'))liveCard=c});
+if(liveCard){if(isTeacherLike)liveCard.style.display='none';else liveCard.style.display='';}
+if(cur==='parent'){let my=await db.collection('students').where('parentId','==',currentUid).get();let bal=0;let myCount=0;my.forEach(d=>{if(d.data()._init)return;myCount++;bal+=Number(d.data().fees||0)-Number(d.data().paid||0);});dashStats=`My Children ${myCount} | My Balance ${bal} | Present ${realPresent}`}
+else if(isFinance){dashStats=`Students ${realStudents} | Collected ${collected} | Present ${realPresent}`}
+else{dashStats=`Students ${realStudents} | Present ${realPresent}`}
+await loadLiveStudents();
+}</pre><div class="mean"><b>MEANING:</b> Heart of Salaama - counts and shows stats.</div><div class="func"><b>FUNCTION:</b> Counts students without _init, sums fees.amount, counts attendance today. Parent sees balance, Admin/Bursar see Collected, Others see NO Collected. Teacher hides Live Data.</div><div class="how"><b>HOW IT MUST BE DONE:</b> isFinance MUST be ONLY ['admin','bursar'].includes(cur) - NO || isDeveloper. Else Developer in Other sees Collected wrongly.</div><div class="warn"><b>IF WRONG:</b> If you add || isDeveloper, Developer in Other Workers will see money he should not see as Other.</div><button class="btn" onclick="showPage('p-j-live')">Next C9 Live →</button></div></div>
+
+<div id="p-j-live" class="screen"><div class="card"><h2>C9. loadLiveStudents() - Exact Code</h2><pre>async function loadLiveStudents(){
+let el=document.getElementById('liveData');if(!firebaseReady){el.innerText='Not Connected';return}
+if(['teacher_sec','teacher_theo','tahfiizu','other'].includes(cur)){ el.innerHTML=''; return; }
+let snap;if(cur==='parent'&&currentUid)snap=await db.collection('students').where('parentId','==',currentUid).get();else snap=await db.collection('students').limit(20).get();
+if(snap.empty){el.innerHTML='No students yet.';return}
+let html='';snap.forEach(d=>{let s=d.data();if(s._init)return;
+if(['admin','bursar'].includes(cur) || cur==='parent'){html+=`🧒 ${s.name||'-'} - ${s.cls||''} - Fees ${s.fees||''} - Paid ${s.paid||''} - Balance ${(s.fees||0)-(s.paid||0)}&lt;br&gt;`;}
+else if(['dos_sec','dos_theo','headteacher'].includes(cur)){html+=`🧒 ${s.name||'-'} - ${s.cls||''}&lt;br&gt;`;}
+});
+el.innerHTML=html||'No students yet.';
+}</pre><div class="mean"><b>MEANING:</b> Live Data box.</div><div class="func"><b>FUNCTION:</b> Teacher sees nothing, Parent sees only own children, Admin/Bursar/Parent see Fees/Paid/Balance, DOS/Headteacher see Name + Class only, no fees.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Check cur only, no || isDeveloper. Limit 20 for speed. Skip _init.</div><button class="btn" onclick="showPage('p-j-secret')">Next C10 Secret →</button></div></div>
+
+<div id="p-j-secret" class="screen"><div class="card"><h2>C10. Secret Tap + Drawer - Exact Code</h2><pre>let secretCount=0,secretTimer=null;
+function secretTap(){
+ secretCount++;clearTimeout(secretTimer);
+ secretTimer=setTimeout(()=>{secretCount=0},2000);
+ if(secretCount>=5){secretCount=0;if(!isDeveloper){alert('Access Denied');return;}openScreen('Developer Tools');}
+}
+function openDrawer(){let R=ROLES.find(x=>x.id===cur);document.getElementById('drawerName').innerText=userName;document.getElementById('drawerRole').innerText=R?R.name:cur;let items=getDash();document.getElementById('drawerItems').innerHTML=items.map(i=>`&lt;div class="drawerItem" onclick="closeDrawer();openScreen('${i[1]}')"&gt;...&lt;/div&gt;`).join('');document.getElementById('drawer').classList.add('open');document.getElementById('drawerOverlay').classList.add('open')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerOverlay').classList.remove('open')}</pre><div class="mean"><b>MEANING:</b> Hidden door.</div><div class="func"><b>FUNCTION:</b> Tap drawer head 5 times in 2 sec. If not developer denied, if developer opens Developer Tools. openDrawer builds items from getDash, adds open.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Must reset after 2 sec, else slow taps count. Must check isDeveloper before opening.</div><button class="btn" onclick="showPage('p-j-open')">Next C11 openScreen →</button></div></div>
+
+<div id="p-j-open" class="screen"><div class="card"><h2>C11. openScreen() - Exact Code</h2><pre>function openScreen(title){
+document.getElementById('detailTitle').innerText=title;let h=`&lt;div class="card"&gt;&lt;h3&gt;${title}&lt;/h3&gt;`;
+if(title==='Developer Tools'){h+=`&lt;input id="mk-admin-email"&gt;&lt;button onclick="makeSchoolAdmin()"&gt;Make School Admin&lt;/button&gt;&lt;div id="listBox"&gt;&lt;/div&gt;`;detailBody.innerHTML=h;show('scr-detail');listAllUsers();return}
+if(title==='Students Management'){h+=`&lt;input id="st-name"&gt;&lt;input id="st-class"&gt;&lt;input id="st-parent"&gt;&lt;input id="st-fees"&gt;&lt;input id="st-paid"&gt;&lt;button onclick="saveStudent()"&gt;Register&lt;/button&gt;&lt;div id="listBox"&gt;`;detailBody.innerHTML=h;show('scr-detail');listStudents();return}
+if(title==='Collect Fees'){h+=`&lt;select id="fee-student"&gt;&lt;/select&gt;&lt;input id="fee-amount"&gt;&lt;button onclick="saveFee()"&gt;Record Payment&lt;/button&gt;`;detailBody.innerHTML=h;show('scr-detail');listFees();fillStudentSelect('fee-student');return}
+if(title==='Attendance'){h+=`&lt;select id="at-name"&gt;&lt;/select&gt;&lt;select id="at-status"&gt;&lt;option&gt;Present&lt;/option&gt;&lt;option&gt;Absent&lt;/option&gt;&lt;/select&gt;&lt;button onclick="saveAttendance()"&gt;Save&lt;/button&gt;`;detailBody.innerHTML=h;show('scr-detail');listAttendance();fillStudentSelect('at-name');return}
+// ... same pattern for Results, Notices, Classes, Tahfiizu, Finance, Settings, Media, etc
+}</pre><div class="mean"><b>MEANING:</b> One function opens ALL tiles.</div><div class="func"><b>FUNCTION:</b> Sets title, builds HTML by title, shows detail, calls list function.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Always set detailBody.innerHTML, then show detail, then call list function. Title must match exactly getDash() title, else it falls to generic textarea.</div><button class="btn" onclick="showPage('p-j-save')">Next C12 Save →</button></div></div>
+
+<div id="p-j-save" class="screen"><div class="card"><h2>C12. Save - Exact Code</h2><pre>async function saveStudent(){let n=document.getElementById('st-name').value.trim();if(!n){alert('Enter Name');return}await db.collection('students').add({name:n,cls:st-class,parentName:st-parent,fees:Number(st-fees||0),paid:Number(st-paid||0),parentId:currentUid,createdAt:new Date()});alert('Student Saved');listStudents();loadDashboard()}
+async function saveFee(){
+ let sel=document.getElementById('fee-student');let studentId=sel?sel.value:'';let studentName=sel?sel.options[sel.selectedIndex]?.text.split(' - ')[0]:'';
+ let a=Number(document.getElementById('fee-amount').value||0);
+ if(!studentId){alert('Please SELECT a student');return}if(!a||a&lt;=0){alert('Enter Amount Paid');return}
+ await db.collection('fees').add({student:studentName,studentId:studentId,amount:a,date:new Date().toDateString(),createdAt:new Date(),by:userName});
+ let doc=await db.collection('students').doc(studentId).get();let oldPaid=Number(doc.data().paid||0);
+ await db.collection('students').doc(studentId).update({paid:oldPaid+a});
+ alert('Payment Saved');listFees();loadDashboard();
+}
+async function saveAttendance(){let sel=document.getElementById('at-name');let studentId=sel?sel.value:'';if(!studentId){alert('Please SELECT a student');return}await db.collection('attendance').add({name:studentName,studentId:studentId,status:at-status,date:new Date().toDateString(),createdAt:new Date(),by:userName});listAttendance();loadDashboard();}
+async function saveResult(){let e=Number(rs-eng||0),m=Number(rs-math||0),s=Number(rs-sci||0);await db.collection('results').add({name,eng:e,math:m,sci:s,total:e+m+s,createdAt:new Date()});}
+async function saveNotice(){await db.collection('notices').add({text:nt-text,by:userName,createdAt:new Date()});}
+async function saveTahfiizu(){await db.collection('tahfiizu').add({name,from:tf-from,to:tf-to,note:tf-note,date:new Date().toDateString(),createdAt:new Date()});}</pre><div class="mean"><b>MEANING:</b> Save = write to Firebase.</div><div class="func"><b>FUNCTION:</b> saveStudent registers, saveFee records payment + updates paid, saveAttendance marks today, saveResult total = eng+math+sci, saveNotice sends, saveTahfiizu saves Hifzu.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Always validate: name not empty, student selected, amount >0. Always use await add(). Always call loadDashboard() after saveFee/saveAttendance so stats update. Balance = fees - paid.</div><div class="warn"><b>IF WRONG:</b> If you forget update paid in saveFee, balance never reduces, even though fee is saved.</div><button class="btn" onclick="showPage('p-j-list')">Next C13 List →</button></div></div>
+
+<div id="p-j-list" class="screen"><div class="card"><h2>C13. List + Approval - Exact Code</h2><pre>async function listStudents(){let s=await db.collection('students').get();let h='';s.forEach(d=>{let x=d.data();if(x._init)return;h+=`&lt;div class="card"&gt;&lt;b&gt;${x.name}&lt;/b&gt; - ${x.cls} - Fees ${x.fees} | Paid ${x.paid} | Bal ${x.fees-x.paid}&lt;/div&gt;`});document.getElementById('listBox').innerHTML=h||'No students yet.'}
+async function listFees(){let s=await db.collection('fees').orderBy('createdAt','desc').limit(20).get();/* build cards */}
+async function loadPendingUsers(){let snap=await db.collection('users').where('approved','==',false).get();/* show Approve / Reject buttons, skip developer email */}
+async function approveUser(uid){let doc=await db.collection('users').doc(uid).get();let roles=doc.data().roles||[];let isAdmin=roles.includes('admin');let finalRoles=isAdmin?SCHOOL_ADMIN_ROLES:roles;await db.collection('users').doc(uid).update({approved:true,approvedRoles:finalRoles,isSchoolAdmin:isAdmin,status:'approved'});}
+async function rejectUser(uid){await db.collection('users').doc(uid).update({approved:false,approvedRoles:[],status:'rejected',roles:[]});}
+async function makeSchoolAdmin(){let em=document.getElementById('mk-admin-email').value.trim().toLowerCase();let s=await db.collection('users').where('email','==',em).get();s.forEach(async d=>{await db.collection('users').doc(d.id).update({approved:true,approvedRoles:SCHOOL_ADMIN_ROLES,roles:SCHOOL_ADMIN_ROLES,isSchoolAdmin:true,status:'approved'});});}
+async function saveRolesToFirebase(){if(isDev){await update({roles:selected,approvedRoles:selected,approved:true});}else{await update({roles:selected,approvedRoles:[],approved:false,status:'pending'});show('scr-wait');}}</pre><div class="mean"><b>MEANING:</b> List = read, Approval = control who enters.</div><div class="func"><b>FUNCTION:</b> listStudents shows all, loadPending shows waiting users, approve gives Admin 4 roles, reject clears, makeSchoolAdmin gives 4 roles by email, saveRoles saves pending for normal, approved for developer.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Always skip _init, always skip developer email in pending, always set approvedRoles when approving.</div><button class="btn" onclick="showPage('p-j-ai')">Next C14 AI →</button></div></div>
+
+<div id="p-j-ai" class="screen"><div class="card"><h2>C14. Salaama AI + Install - Exact Code</h2><pre>async function askAI(){let q=document.getElementById('aiInput').value.trim();if(!q)return;let l=q.toLowerCase();let ans='';
+if(l.includes('how many')||l.includes('students')){let s=await db.collection('students').get();let n=0;s.forEach(d=>{if(!d.data()._init)n++});ans=`Real: You have ${n} students.`}
+else if(l.includes('balance')){let s=await db.collection('students').get();let f=null;s.forEach(d=>{if(d.data().name&&d.data().name.toLowerCase().includes(name))f=d.data()});if(f)ans=`Real: ${f.name} - Fees ${f.fees} - Paid ${f.paid} - Balance ${(f.fees-f.paid)}`}
+else if(l.includes('attendance')){let s=await db.collection('attendance').where('date','==',new Date().toDateString()).get();ans=`Real: Today ${s.size} marked.`}
+else if(l.includes('fees')||l.includes('collected')){let s=await db.collection('fees').get();let tot=0;s.forEach(d=>{if(!d.data()._init)tot+=Number(d.data().amount||0)});ans=`Real: Total Collected = ${tot}`}
+else if(l.includes('my child')){let s=await db.collection('students').where('parentId','==',currentUid).get();ans='Your children: ...'}
+}
+let deferredPrompt=null;window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='block'});
+async function installApp(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;}else{alert('Android: Chrome > 3 dots > Add to Home screen')}}
+setTimeout(()=>{if(phoneLockEnabled())show('scr-unlock');else show('scr-login')},4600);</pre><div class="mean"><b>MEANING:</b> AI answers from REAL data, Install makes app.</div><div class="func"><b>FUNCTION:</b> askAI lowercases question, checks keywords, reads Firestore, answers. installApp uses beforeinstallprompt. Bottom timer hides splash, shows unlock or login.</div><div class="how"><b>HOW IT MUST BE DONE:</b> Always lowercase question before checking. Always read real Firestore, never hardcode numbers. Install needs https + manifest.</div><button class="btn btn-gold" onclick="showPage('p-home')">← Back Home</button></div></div>
+
+</div>
+<script>
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open')}
+function showPage(id){closeDrawer();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));let el=document.getElementById(id);if(el)el.classList.add('active');window.scrollTo(0,0)}
+</script>
+</body>
+</html>
