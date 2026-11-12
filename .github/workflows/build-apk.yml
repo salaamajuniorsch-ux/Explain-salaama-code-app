@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+      JAVA_HOME: /usr/lib/jvm/temurin-17-jdk-amd64
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,15 +27,25 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Accept Android Licenses Automatically
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          echo "Licenses accepted"
+
+      - name: Create needed files automatically
+        run: |
+          echo '{"name":"SALAAMA - Exact Code Explained","short_name":"Salaama Code","start_url":"./index.html","display":"standalone","background_color":"#2E42C2","theme_color":"#2E42C2","icons":[]}' > manifest.json
+          echo '{"appId":"com.salaama.explain","appName":"Salaama Code Explained","webDir":"www","server":{"androidScheme":"https"}}' > capacitor.config.json
+          echo '{"name":"salaama-explain","version":"1.0.0","private":true,"devDependencies":{"@capacitor/cli":"6.1.2","@capacitor/core":"6.1.2","@capacitor/android":"6.1.2"}}' > package.json
+          mkdir -p www
+          cp index.html manifest.json www/
 
       - name: Install Capacitor
         run: npm install
 
-      - name: Prepare www folder
+      - name: Init and Sync Android
         run: |
-          npm run build
           npx cap init "Salaama Code Explained" com.salaama.explain --web-dir=www || true
           npx cap add android || true
           npx cap sync android
