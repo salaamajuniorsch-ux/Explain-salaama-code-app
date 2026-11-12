@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SALAAMA - Explain This Code</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#F8F9FF;color:#222}
+.topbar{background:#2E42C2;color:#fff;padding:12px;display:flex;gap:10px;align-items:center;position:sticky;top:0;z-index:20}
+.menuBtn{background:#F2C94C;border:none;width:38px;height:38px;border-radius:10px;font-size:18px;font-weight:900;cursor:pointer}
+.wrap{max-width:720px;margin:auto;padding:14px;padding-bottom:80px}
+.screen{display:none}.screen.active{display:block}
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px #0001;border:1px solid #EEF1FF}
+.card h2{color:#2E42C2;margin:0 0 8px;font-size:18px}
+.card h3{color:#2E9E4F;margin:14px 0 6px;font-size:15px}
+.card p,.card li{font-size:14px;line-height:1.65}
+code{background:#EEF1FF;color:#2E42C2;padding:2px 6px;border-radius:6px;font-size:12px}
+pre{background:#111827;color:#E5E7EB;padding:12px;border-radius:12px;overflow:auto;font-size:12px;line-height:1.5}
+.btn{background:#2E42C2;color:#fff;border:none;padding:12px;border-radius:12px;width:100%;font-weight:bold;margin-top:8px;cursor:pointer}
+.btn-gold{background:#F2C94C;color:#222}
+.badge{display:inline-block;background:#2E9E4F;color:#fff;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800}
+.badge.blue{background:#2E42C2}.badge.red{background:#E53935}.badge.gold{background:#F2C94C;color:#222}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+td,th{border:1px solid #EEF1FF;padding:8px;text-align:left}
+th{background:#EEF1FF;color:#2E42C2}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none}
+#overlay.open{display:block}
+#drawer{position:fixed;left:0;top:0;bottom:0;width:86%;max-width:330px;background:#fff;z-index:201;transform:translateX(-100%);transition:transform .28s ease;overflow-y:auto;box-shadow:10px 0 30px rgba(0,0,0,.25);border-radius:0 16px 16px 0}
+#drawer.open{transform:translateX(0)}
+.drawerHead{background:linear-gradient(135deg,#2E42C2,#2A39A8);color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center}
+.closeBtn{background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-weight:900;cursor:pointer}
+.drawerLabel{font-size:11px;font-weight:800;letter-spacing:1px;color:#888;padding:14px 14px 4px}
+.drawerItem{display:block;padding:11px 14px;border-bottom:1px solid #eee;cursor:pointer;font-size:13px;font-weight:700;color:#222}
+.drawerItem small{display:block;font-weight:400;color:#777;font-size:11px}
+.drawerItem.active{background:#EEF1FF;color:#2E42C2}
+</style>
+</head>
+<body>
+<div id="overlay" onclick="closeDrawer()"></div>
+<div id="drawer">
+<div class="drawerHead"><b>📖 Explain This Code</b><button class="closeBtn" onclick="closeDrawer()">X</button></div>
+<div class="drawerLabel">START</div>
+<div class="drawerItem" onclick="showPage('p-home')">🏠 Home - Map Of Whole App</div>
+<div class="drawerLabel">1. HTML - HEAD</div>
+<div class="drawerItem" onclick="showPage('p-head')">1.1 Head, Title, Manifest<small>Meta, icon, theme color</small></div>
+<div class="drawerItem" onclick="showPage('p-splash')">1.2 Splash / Loading Screen<small>Logo, ring, bar, 4.6 sec</small></div>
+<div class="drawerLabel">2. HTML - BODY</div>
+<div class="drawerItem" onclick="showPage('p-drawer')">2.1 Drawer - Left Menu<small>DrawerHead, Items, Dev Card</small></div>
+<div class="drawerItem" onclick="showPage('p-flyer')">2.2 Developer Flyer<small>Advert page, businesses</small></div>
+<div class="drawerItem" onclick="showPage('p-screens')">2.3 Screens<small>Unlock, Login, Role, Dash, Detail, Wait</small></div>
+<div class="drawerItem" onclick="showPage('p-aihtml')">2.4 AI Button + Box<small>Floating AI chat</small></div>
+<div class="drawerLabel">3. CSS</div>
+<div class="drawerItem" onclick="showPage('p-css1')">3.1 Root Colors + Layout<small>Blue, Gold, Green, Card, Grid</small></div>
+<div class="drawerItem" onclick="showPage('p-css2')">3.2 Tiles, Buttons, Stats<small>StatGrid, RoleCard, Badge</small></div>
+<div class="drawerItem" onclick="showPage('p-css3')">3.3 Drawer + Splash Animation<small>Slide, Float, Spin, Load</small></div>
+<div class="drawerLabel">4. SCRIPT - SETUP</div>
+<div class="drawerItem" onclick="showPage('p-js1')">4.1 Config + Variables<small>firebaseConfig, DEV_EMAIL, ROLES</small></div>
+<div class="drawerItem" onclick="showPage('p-js2')">4.2 Helpers + Phone Lock<small>show(), togglePass(), WebAuthn</small></div>
+<div class="drawerItem" onclick="showPage('p-js3')">4.3 ensureCollections + ensureUserDoc<small>Auto create collections, Developer first time</small></div>
+<div class="drawerItem" onclick="showPage('p-js4')">4.4 handleAfterAuth + Login / Signup<small>Who goes where after login</small></div>
+<div class="drawerLabel">5. SCRIPT - ROLES + DASHBOARD</div>
+<div class="drawerItem" onclick="showPage('p-js5')">5.1 ROLES + getDash()<small>10 roles, different tiles</small></div>
+<div class="drawerItem" onclick="showPage('p-js6')">5.2 renderRoleList + toggleRoleCard<small>Approved green, Pending orange</small></div>
+<div class="drawerItem" onclick="showPage('p-js7')">5.3 loadDashboard()<small>Students, Collected, Present - BY ROLE</small></div>
+<div class="drawerItem" onclick="showPage('p-js8')">5.4 loadLiveStudents()<small>Live Data - who sees fees</small></div>
+<div class="drawerItem" onclick="showPage('p-js9')">5.5 Drawer + Secret Tap<small>Tap logo 5 times = Developer Tools</small></div>
+<div class="drawerLabel">6. SCRIPT - DATA</div>
+<div class="drawerItem" onclick="showPage('p-js10')">6.1 openScreen()<small>One function opens all tiles</small></div>
+<div class="drawerItem" onclick="showPage('p-js11')">6.2 Save Functions<small>saveStudent, saveFee, saveAttendance, saveResult</small></div>
+<div class="drawerItem" onclick="showPage('p-js12')">6.3 List Functions + Approval<small>listStudents, listFees, approveUser</small></div>
+<div class="drawerItem" onclick="showPage('p-js13')">6.4 Salaama AI + Install<small>askAI(), installApp(), splash timer</small></div>
+<div class="drawerLabel">7. FIXES</div>
+<div class="drawerItem" onclick="showPage('p-fix')">7.1 Your 2 Fixes<small>Remove isDeveloper, Remove Firebase word</small></div>
+</div>
+
+<div class="topbar"><button class="menuBtn" onclick="openDrawer()">☰</button><div><b>SALAAMA - Explain This Code</b><br><span style="font-size:11px;color:#F2C94C">Tap ☰ for headings</span></div></div>
+<div class="wrap">
+
+<div id="p-home" class="screen active"><div class="card"><h2>Home - Map Of Whole App</h2><span class="badge blue">YOUR FILE</span> <span class="badge gold">1 FILE</span><p>Your app is <b>ONE HTML file</b> with 3 parts:</p><table><tr><th>Part</th><th>What It Does</th></tr><tr><td>HTML</td><td>Structure: splash, drawer, screens, buttons</td></tr><tr><td>CSS in &lt;style&gt;</td><td>Look: colors, cards, tiles, drawer slide, splash animation</td></tr><tr><td>Script in &lt;script&gt;</td><td>Brain: Firebase, login, roles, dashboard, save data, AI</td></tr></table><p><b>Flow:</b> Splash (4.6s) → Unlock / Login → Role List → Dashboard → Detail Screen (tap tile) → Back to Dashboard.</p><button class="btn" onclick="showPage('p-head')">Start: 1.1 Head →</button></div></div>
+
+<div id="p-head" class="screen"><div class="card"><h2>1.1 Head, Title, Manifest</h2><p>Top of file:</p><pre>&lt;title&gt;SALAAMA MUSLIM JUNIOR SCHOOL&lt;/title&gt;
+&lt;link rel="icon" href="logo.png"&gt;
+&lt;link rel="manifest" href="manifest.json"&gt;
+&lt;meta name="theme-color" content="#2E42C2"&gt;</pre><ul><li><b>icon:</b> logo.png shows in tab</li><li><b>manifest.json:</b> makes it installable as App (PWA)</li><li><b>theme-color:</b> blue top bar on phone</li><li><b>3 Firebase scripts:</b> firebase-app, firebase-auth, firebase-firestore - all version 10.12.2 compat</li></ul><button class="btn" onclick="showPage('p-splash')">Next: Splash →</button></div></div>
+
+<div id="p-splash" class="screen"><div class="card"><h2>1.2 Splash / Loading Screen</h2><pre>&lt;div id="splash"&gt;
+  &lt;div class="splash-ring"&gt;&lt;/div&gt;
+  &lt;img class="splash-logo" src="logo.png"&gt;
+  SALAAMA MUSLIM / JUNIOR SCHOOL
+  DESTINED TO SUCCEED
+  &lt;div class="splash-bar"&gt;&lt;div class="splash-fill"&gt;&lt;/div&gt;&lt;/div&gt;
+  Loading...
+&lt;/div&gt;
+&lt;script&gt;setTimeout(hide splash, 4600)&lt;/script&gt;</pre><p>Shows for 4.6 seconds. Has 2 timers: one right after splash, one at bottom of script. Both hide it and then show Unlock or Login. Ring spins, logo floats, bar moves.</p><button class="btn" onclick="showPage('p-drawer')">Next: Drawer →</button></div></div>
+
+<div id="p-drawer" class="screen"><div class="card"><h2>2.1 Drawer - Left Menu</h2><p>Drawer is <code>#drawer</code> + <code>#drawerOverlay</code>. Hidden left with <code>translateX(-100%)</code>. <code>openDrawer()</code> adds <code>open</code> class, it slides in.</p><ul><li><b>drawerHead:</b> Logo + drawerName + drawerRole. <code>onclick="secretTap()"</code> - tap 5 times = Developer Tools</li><li><b>drawerLabel CURRENT DASHBOARD:</b> shows current role name</li><li><b>drawerItems:</b> filled by <code>getDash()</code> - changes per role</li><li><b>ROLES:</b> Back to Roles List</li><li><b>devCard:</b> hidden by default <code>display:none</code>, shows Developer Jemba AbdulHamiid</li><li><b>Logout:</b> signs out</li></ul><button class="btn" onclick="showPage('p-flyer')">Next: Flyer →</button></div></div>
+
+<div id="p-flyer" class="screen"><div class="card"><h2>2.2 Developer Flyer</h2><p><code>#devFlyer</code> is a full-screen page, hidden until <code>openDevFlyer()</code>. Top: DO YOU NEED AN APP FOR YOUR BUSINESS? Middle: 8 businesses grid - SACCO, School, Pharmacy, Mosque, Clinic, Real Estate, Restaurant, Shop. Bottom: Contact - WhatsApp 0709157254, Call 0785831666, Email ustadhnze@gmail.com, buttons Chat on WhatsApp and Call Now.</p><button class="btn" onclick="showPage('p-screens')">Next: Screens →</button></div></div>
+
+<div id="p-screens" class="screen"><div class="card"><h2>2.3 Screens</h2><p>All screens have class <code>screen</code>. Only one has <code>active</code>. <code>show(id)</code> hides all, shows one.</p><table><tr><th>Screen</th><th>What Is Inside</th></tr><tr><td>scr-unlock</td><td>Welcome Back, Unlock with Phone Lock, Use Password, Turn OFF Lock</td></tr><tr><td>scr-login</td><td>Logo, fbStatus pill (Connect / Connected), Name, Email, Password + SHOW, Remember, Login, Create, Forgot, Retry, Install</td></tr><tr><td>scr-role</td><td>Welcome + roleList + Continue + Save My Roles</td></tr><tr><td>scr-dash</td><td>Topbar hamburger, dashUserName, dashStats, dashGrid, Live Data + Refresh</td></tr><tr><td>scr-detail</td><td>detailTitle + detailBody - filled by openScreen()</td></tr><tr><td>scr-wait</td><td>Waiting for Approval + waitRoleList + Check Approval</td></tr></table><button class="btn" onclick="showPage('p-aihtml')">Next: AI →</button></div></div>
+
+<div id="p-aihtml" class="screen"><div class="card"><h2>2.4 AI Button + Box</h2><p><code>#aiBtn</code> fixed bottom-right, purple gradient, gold border, says ✦ AI. <code>#aiBox</code> fixed above it, hidden with class <code>hidden</code>. Inside: topbar, <code>#chatBox</code>, input <code>#aiInput</code> + Send button. <code>toggleAI()</code> shows / hides box.</p><button class="btn" onclick="showPage('p-css1')">Next: CSS →</button></div></div>
+
+<div id="p-css1" class="screen"><div class="card"><h2>3.1 Root Colors + Layout</h2><pre>:root{ --blue:#2E42C2; --gold:#F2C94C; --green:#2E9E4F; --bg:#F8F9FF }</pre><ul><li><code>.wrap</code> max-width 540px, centered - phone look</li><li><code>.card</code> white, radius 14px, shadow, border #EEF1FF</li><li><code>.grid</code> 2 columns for tiles</li><li><code>.topbar</code> blue, sticky top, logo 34px circle</li><li><code>.screen</code> display:none, <code>.screen.active</code> display:block</li></ul><button class="btn" onclick="showPage('p-css2')">Next: Tiles →</button></div></div>
+
+<div id="p-css2" class="screen"><div class="card"><h2>3.2 Tiles, Buttons, Stats</h2><ul><li><b>.tile:</b> white, center, icon 30px, tap = gold border + scale .97</li><li><b>.btn:</b> blue full width, <b>.btn-gold</b> gold, <b>.btn-green</b> green, <b>.btn-red</b> red</li><li><b>.statGrid:</b> 3 columns. 1st stat blue, 2nd green, 3rd gold with dark text</li><li><b>.roleCard:</b> border grey, <b>.approved</b> green bg, <b>.pending</b> orange bg</li><li><b>.badge-green / orange / grey:</b> APPROVED / PENDING / Tap to Select</li><li><b>input, select, textarea:</b> 100% width, radius 12px</li></ul><button class="btn" onclick="showPage('p-css3')">Next: Animation →</button></div></div>
+
+<div id="p-css3" class="screen"><div class="card"><h2>3.3 Drawer + Splash Animation</h2><pre>#drawer{ transform:translateX(-100%); transition:.28s }
+#drawer.open{ transform:translateX(0) }
+#splash img{ animation:splashFloat 2.2s infinite }
+.splash-ring{ animation:splashSpin 2.5s linear infinite }
+.splash-fill{ animation:splashLoad 1.2s infinite alternate }</pre><p><b>splashFloat:</b> logo moves up 8px and scale 1.03. <b>splashSpin:</b> ring rotates 360deg. <b>splashLoad:</b> gold bar moves left to 60%. <b>splashFade:</b> whole splash fades in from scale .92.</p><button class="btn" onclick="showPage('p-js1')">Next: Script Setup →</button></div></div>
+
+<div id="p-js1" class="screen"><div class="card"><h2>4.1 Config + Variables</h2><pre>firebaseConfig = { apiKey, authDomain, projectId, ... }
+DEV_EMAIL = "ustadhnze@gmail.com"
+DEV_NAME = "Jemba AbdulHamiid"
+ALL_ROLES = 10 roles
+SCHOOL_ADMIN_ROLES = admin, headteacher, bursar, parent
+DEV_ROLES = all 10
+COLLECTIONS = users, students, staff, fees, attendance, results, notices, tahfiizu, classes
+let cur='admin', userName='User', selected=[], approvedRoles=[], isDeveloper=false</pre><p><b>cur</b> = current dashboard role. <b>selected</b> = roles user tapped. <b>approvedRoles</b> = roles Admin approved. <b>isDeveloper</b> = true only if email is DEV_EMAIL.</p><button class="btn" onclick="showPage('p-js2')">Next: Helpers →</button></div></div>
+
+<div id="p-js2" class="screen"><div class="card"><h2>4.2 Helpers + Phone Lock</h2><ul><li><b>isDevEmail(e):</b> checks if email equals DEV_EMAIL</li><li><b>setMsg(t,c):</b> shows text under login</li><li><b>setBusy():</b> disables button, shows Please wait...</li><li><b>togglePass():</b> SHOW / HIDE password</li><li><b>show(id):</b> hides all screens, shows one, closes drawer</li><li><b>phoneLockEnabled():</b> checks localStorage salaama_phone_lock = 1</li><li><b>setupPhoneLock():</b> uses WebAuthn - Fingerprint / Face / PIN. Saves webauthn_id</li><li><b>unlockWithPhoneLock():</b> asks fingerprint, then if auth.currentUser exists, goes to handleAfterAuth</li></ul><button class="btn" onclick="showPage('p-js3')">Next: User Doc →</button></div></div>
+
+<div id="p-js3" class="screen"><div class="card"><h2>4.3 ensureCollections + ensureUserDoc</h2><p><b>ensureCollections():</b> For each of 9 collections, if empty, creates doc <code>_init</code>. So collections always exist. <code>_init</code> docs are ignored in counts.</p><p><b>ensureUserDoc():</b> If user doc does not exist, creates it. If isDev, roles = DEV_ROLES, approved = true, status approved. If normal user, roles = [], approved = false, status pending. If isDev but doc says not developer, it updates to developer + all roles.</p><button class="btn" onclick="showPage('p-js4')">Next: Auth →</button></div></div>
+
+<div id="p-js4" class="screen"><div class="card"><h2>4.4 handleAfterAuth + Login / Signup</h2><p><b>handleAfterAuth(email):</b></p><ol><li>Sets currentUid, calls ensureCollections, saves email in localStorage</li><li>Calls ensureUserDoc</li><li>If Remember checked, enablePhoneLock + setupPhoneLock</li><li>If isDeveloper: approvedRoles = DEV_ROLES, show Role List</li><li>Else if not approved: show Wait screen</li><li>Else: approvedRoles = approvedRoles, show Role List</li></ol><p><b>firebaseSignup():</b> Checks name, email, pass 6+, creates account, if email already exists, tries login. <b>firebaseLogin():</b> Signs in, if already signed in with same email, goes direct. <b>forgotPassword():</b> Sends reset link. <b>checkApproval():</b> Reloads user doc, if approved, shows Role List.</p><button class="btn" onclick="showPage('p-js5')">Next: Roles →</button></div></div>
+
+<div id="p-js5" class="screen"><div class="card"><h2>5.1 ROLES + getDash()</h2><p>ROLES array has 10 objects: id, name, icon, desc, func. Example:</p><pre>{id:'admin', name:'Admin', icon:'👑', func:'Approve users • Staff • Students • Finance'}</pre><p><b>getDash():</b> Returns tiles by <code>cur</code>. Admin 9 tiles, Bursar 6, Headteacher 6, DOS 5, Teacher 6, Tahfiizu 5, Other 2, Parent 7. Drawer and Dashboard both use getDash().</p><button class="btn" onclick="showPage('p-js6')">Next: Role List →</button></div></div>
+
+<div id="p-js6" class="screen"><div class="card"><h2>5.2 renderRoleList + toggleRoleCard</h2><p><b>renderRoleList():</b> Loops ROLES, creates roleCard. If approved = green + APPROVED badge, if selected but not approved = orange + PENDING, else grey + Tap to Select.</p><p><b>toggleRoleCard(id):</b> RULE - If GREEN approved, tapping ENTERS dashboard: cur=id, switchRole, show dash, loadDashboard. If not approved, it only selects / deselects. Max: Normal 3 roles, Admin 4, Developer 10.</p><p><b>confirmRoles():</b> Enters first approved selected role. <b>switchRole(r):</b> Only called from Role List, sets cur, updates topbar, builds tiles.</p><button class="btn" onclick="showPage('p-js7')">Next: Dashboard →</button></div></div>
+
+<div id="p-js7" class="screen"><div class="card"><h2>5.3 loadDashboard()</h2><p>Most important function:</p><pre>realStudents = count students without _init
+collected = sum fees.amount
+realPresent = count attendance today
+isFinance = ['admin','bursar'].includes(cur)
+isTeacherLike = ['teacher_sec','teacher_theo','tahfiizu','other']</pre><p><b>Live Data box:</b> If isTeacherLike, hide it. Else show it.</p><p><b>Stats:</b></p><ul><li>Parent: My Children + My Balance + Present</li><li>isFinance (Admin/Bursar): Students + Collected + Present</li><li>Others: Students + Present ONLY - No Collected</li></ul><p>Then calls loadLiveStudents().</p><button class="btn" onclick="showPage('p-js8')">Next: Live Data →</button></div></div>
+
+<div id="p-js8" class="screen"><div class="card"><h2>5.4 loadLiveStudents()</h2><p>Shows Live Data box:</p><ul><li>Teacher / Tahfiizu / Other: returns empty, nothing shown</li><li>Parent: only students where parentId == currentUid</li><li>Else: first 20 students</li><li>Admin / Bursar / Parent: Name - Class - Fees - Paid - Balance</li><li>DOS / Headteacher: Name - Class ONLY, no fees</li></ul><p>If not firebaseReady, shows Not Connected. If empty, No students yet.</p><button class="btn" onclick="showPage('p-js9')">Next: Secret Tap →</button></div></div>
+
+<div id="p-js9" class="screen"><div class="card"><h2>5.5 Drawer + Secret Tap</h2><pre>let secretCount=0
+function secretTap(){
+  secretCount++
+  setTimeout(reset in 2 sec)
+  if(secretCount>=5){
+    if(!isDeveloper) alert Access Denied
+    else openScreen('Developer Tools')
+  }
+}</pre><p><b>openDrawer():</b> Sets drawerName, drawerRole, builds drawerItems from getDash(), adds open class. <b>closeDrawer():</b> removes open. <b>openDevFlyer / closeDevFlyer:</b> shows / hides flyer.</p><button class="btn" onclick="showPage('p-js10')">Next: openScreen →</button></div></div>
+
+<div id="p-js10" class="screen"><div class="card"><h2>6.1 openScreen()</h2><p>One function for ALL tiles. It sets detailTitle, builds HTML <code>h</code> by title:</p><ul><li>Developer Tools: input + Make School Admin + listBox</li><li>Students Management: inputs + Register + listStudents</li><li>Staff / Teacher Management: pendingList + Save Staff</li><li>Fees / Collect Fees / Receipt: select student + amount + saveFee</li><li>Attendance: select student + Present/Absent + saveAttendance</li><li>Results / Record Marks: inputs + saveResult</li><li>Notices / Chat: textarea + saveNotice</li><li>My Child / Fees Status / Tahfiizu Progress: listMyChildren</li><li>Classes / My Classes: listClasses, Tahfiizu: saveTahfiizu, Finance: listFees, Settings: term + fees, etc</li></ul><p>Then <code>show('scr-detail')</code>.</p><button class="btn" onclick="showPage('p-js11')">Next: Save →</button></div></div>
+
+<div id="p-js11" class="screen"><div class="card"><h2>6.2 Save Functions</h2><ul><li><b>saveStudent():</b> adds to students: name, cls, parentName, fees, paid, parentId=currentUid</li><li><b>saveStaff():</b> adds to staff: name, role, salary</li><li><b>fillStudentSelect():</b> fills dropdown with Name - Class - Bal. For fees, onchange shows Fees / Paid / Balance</li><li><b>saveFee():</b> must SELECT student, must amount >0. Adds to fees, then updates student paid = oldPaid + amount. Then listFees + loadDashboard</li><li><b>saveAttendance():</b> must SELECT student. Adds to attendance with date = today, by=userName</li><li><b>saveResult():</b> eng+math+sci = total, saves to results</li><li><b>saveNotice(), saveTahfiizu():</b> save to notices / tahfiizu</li></ul><button class="btn" onclick="showPage('p-js12')">Next: List + Approval →</button></div></div>
+
+<div id="p-js12" class="screen"><div class="card"><h2>6.3 List Functions + Approval</h2><ul><li><b>listStudents, listStaff, listFees, listAttendance, listResults, listNotices, listMyChildren, listClasses, listTahfiizu:</b> each reads collection, skips _init, builds cards in listBox</li><li><b>loadPendingUsers():</b> users where approved==false, skips developer email, shows Approve / Reject buttons</li><li><b>approveUser():</b> if roles includes admin, finalRoles = SCHOOL_ADMIN_ROLES (4 roles), else roles as requested. Sets approved true</li><li><b>rejectUser():</b> approved false, approvedRoles [], status rejected</li><li><b>makeSchoolAdmin():</b> finds by email, sets approved + 4 roles + isSchoolAdmin true</li><li><b>listAllUsers():</b> shows all users + DEVELOPER / SCHOOL ADMIN / User label</li><li><b>saveRolesToFirebase():</b> Developer saves directly approved, normal user saves pending and goes to Wait</li></ul><button class="btn" onclick="showPage('p-js13')">Next: AI →</button></div></div>
+
+<div id="p-js13" class="screen"><div class="card"><h2>6.4 Salaama AI + Install</h2><p><b>askAI():</b> Reads question lowercased, checks keywords:</p><ul><li>how many / students → count students</li><li>balance → find student by name, show Fees - Paid - Balance</li><li>attendance → count today + list</li><li>top / result → highest total /300</li><li>fees / collected → sum fees</li><li>notice → latest notice</li><li>tahfiizu / quran → last 3 presentations</li><li>my child → students where parentId == currentUid</li></ul><p><b>installApp():</b> Uses beforeinstallprompt. If no prompt, alert Chrome > 3 dots > Add to Home screen. <b>Bottom timer:</b> After 4.6 sec, hide splash, if phoneLockEnabled show Unlock, else show Login.</p><button class="btn" onclick="showPage('p-fix')">Next: Fixes →</button></div></div>
+
+<div id="p-fix" class="screen"><div class="card"><h2>7.1 Your 2 Fixes</h2><p><b>Fix 1 - Developer sees as role:</b></p><pre>BEFORE: let isFinance = ['admin','bursar'].includes(cur) || isDeveloper;
+AFTER:  let isFinance = ['admin','bursar'].includes(cur);</pre><p>Same in loadLiveStudents: removed <code>|| isDeveloper</code>. Now Developer in Other Workers sees like Other Workers, Developer in Admin sees like Admin.</p><p><b>Fix 2 - Remove word Firebase:</b></p><pre>fbStatus: s.innerText='Connected' // was only color change
+loadLiveStudents: 'Not Connected' // was 'Firebase not connected'
+login/signup/forgot: setMsg('Not Connected') // was setMsg(e.message)</pre><p>Now users never see long Firebase error.</p><button class="btn btn-gold" onclick="showPage('p-home')">← Back Home</button></div></div>
+
+</div>
+<script>
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('open')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open')}
+function showPage(id){closeDrawer();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));let el=document.getElementById(id);if(el)el.classList.add('active');document.querySelectorAll('.drawerItem').forEach(d=>d.classList.remove('active'));window.scrollTo(0,0)}
+</script>
+</body>
+</html>
